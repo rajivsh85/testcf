@@ -8,7 +8,7 @@ steps:
     title: Cloning main repository...
     stage: checkout
     type: git-clone
-    repo: 'codefresh-contrib/terraform-sample-app'
+    repo: 'rajivsh85/testcf'
     revision: master
     git: github      
   SetupAuth:
