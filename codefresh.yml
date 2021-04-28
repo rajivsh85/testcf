@@ -1,0 +1,27 @@
+version: '1.0'
+stages:
+  - checkout
+  - prepare   
+  - deploy
+steps:
+  main_clone:
+    title: Cloning main repository...
+    stage: checkout
+    type: git-clone
+    repo: 'codefresh-contrib/terraform-sample-app'
+    revision: master
+    git: github      
+  SetupAuth:
+    image: alpine:3.9
+    title: Setting up Google cloud auth
+    stage: prepare
+    commands:
+      - echo $ACCOUNT_JSON_CONTENT > /codefresh/volume/account.json
+      - cf_export GOOGLE_CLOUD_KEYFILE_JSON=/codefresh/volume/account.json
+  DeployWithTerraform:
+    image: hashicorp/terraform:0.12.0
+    title: Deploying blah blah
+    stage: deploy
+    commands:
+      - terraform init
+      - terraform apply -auto-approve 
