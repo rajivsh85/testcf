@@ -27,9 +27,10 @@ steps:
       - terraform init
       - terraform apply -auto-approve 
   generate_destroy_plan:
+    image: hashicorp/terraform:0.12.0
     title: Generate Plan
     stage: destroy
-    image: hashicorp/terraform:0.12.0
+    commands:
       - terraform version
       - terraform init
       - terraform plan -input=false -lock=false -destroy
