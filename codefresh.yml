@@ -46,6 +46,7 @@ steps:
   destroy:
     title: Do Destroy
     stage: destroy
+    image: hashicorp/terraform:0.12.0
     commands:
       - terraform version
       - terraform init
