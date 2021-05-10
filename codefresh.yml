@@ -40,11 +40,11 @@ steps:
     timeout:
       duration: 48
       finalState: denied
-  destroy:
-    title: Do Destroy
-    stage: destroy
-    image: hashicorp/terraform:0.12.0
-    commands:
-      - terraform version
-      - terraform init
-      - terraform destroy -input=false -auto-approve
+#  destroy:
+#    title: Do Destroy
+#    stage: destroy
+#    image: hashicorp/terraform:0.12.0
+#    commands:
+#      - terraform version
+#      - terraform init
+#      - terraform destroy -input=false -auto-approve
