@@ -25,19 +25,19 @@ steps:
     commands:
       - terraform init
       - terraform apply -auto-approve
-  generate_destroy_plan:
-    title: Generate Plan
-    stage: destroy
-
-    commands:
-      - terraform version
-      - terraform init
-      - terraform plan -input=false -lock=false -destroy
-
-  approve_destroy:
-    type: pending-approval
-    stage: destroy
-    title: Approve Destroy
-    timeout:
-      duration: 48
-      finalState: denied
+#  generate_destroy_plan:
+#    title: Generate Plan
+#    stage: destroy
+#
+#    commands:
+#      - terraform version
+#      - terraform init
+#      - terraform plan -input=false -lock=false -destroy
+#
+#  approve_destroy:
+#    type: pending-approval
+#    stage: destroy
+#    title: Approve Destroy
+#    timeout:
+#      duration: 48
+#      finalState: denied
