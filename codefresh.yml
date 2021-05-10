@@ -3,7 +3,6 @@ stages:
   - checkout
   - prepare   
   - deploy
-  - destroy
 steps:
   main_clone:
     title: Cloning main repository...
@@ -17,6 +16,7 @@ steps:
     title: Setting up Google cloud auth
     stage: prepare
     commands:
+      - echo $ACCOUNT_JSON_CONTENT
       - echo $ACCOUNT_JSON_CONTENT > /codefresh/volume/account.json
       - cf_export GOOGLE_CLOUD_KEYFILE_JSON=/codefresh/volume/account.json
   DeployWithTerraform:
@@ -26,26 +26,3 @@ steps:
     commands:
       - terraform init
       - terraform apply -auto-approve
-  generate_destroy_plan:
-    title: Generate Plan
-    stage: destroy
-    image: hashicorp/terraform:0.12.0
-    commands:
-      - terraform version
-      - terraform init
-      - terraform plan -input=false -lock=false -destroy
-  approve_destroy:
-    type: pending-approval
-    stage: destroy
-    title: Approve Destroy
-    timeout:
-      duration: 48
-      finalState: denied
-  destroy:
-    title: Do Destroy
-    stage: destroy
-    image: hashicorp/terraform:0.12.0
-    commands:
-      - terraform version
-      - terraform init
-      - terraform destroy -input=false -auto-approve
