@@ -3,7 +3,6 @@ stages:
   - checkout
   - prepare   
   - deploy
-  - destroy
 steps:
   main_clone:
     title: Cloning main repository...
