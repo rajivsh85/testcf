@@ -1,5 +1,5 @@
 resource "google_compute_instance" "vm_instance" {
-  name         = "terraform-instance"
+  name         = "demo-instance"
   machine_type = "f1-micro"
 
   boot_disk {
@@ -9,7 +9,7 @@ resource "google_compute_instance" "vm_instance" {
   }
 
   network_interface {
-    network = "default"
+    subnetwork = "default"
   }
 }
 
